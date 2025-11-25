@@ -273,6 +273,7 @@ spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "swww img /home/dok4ever/Downloads/1290521.jpg" // Set wallpaper
 spawn-sh-at-startup "waybar" // Launch waybar
 spawn-sh-at-startup "fcitx5 -d"
+spawn-at-startup "blueman-applet"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
