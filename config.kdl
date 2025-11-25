@@ -268,7 +268,11 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
+spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
+spawn-sh-at-startup "swww img /home/dok4ever/Downloads/1290521.jpg" // Set wallpaper
+spawn-sh-at-startup "waybar" // Launch waybar
+spawn-sh-at-startup "fcitx5"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -324,10 +328,20 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+    open-maximized true
 }
 
-// Example: block out two password managers from screen capture.
+window-rule {
+        geometry-corner-radius 20 // Set every window radius to 20
+        clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"kitty$"#
+    open-maximized true
+}
+
+// Example: bloc out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
@@ -363,7 +377,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
